@@ -1,14 +1,14 @@
 const navLinks = [
   {
-    name: "Work",
-    link: "#work",
+    name: "About",
+    link: "#about",
   },
   {
     name: "Experience",
     link: "#experience",
   },
   {
-    name: "Skills",
+    name: "Projects",
     link: "#skills",
   },
 ];
@@ -188,18 +188,22 @@ const socialImgs = [
   {
     name: "insta",
     imgPath: "/images/insta.png",
+    link: "",
   },
   {
-    name: "fb",
+    name: "cv",
     imgPath: "/images/cv.png",
+    link: "",
   },
   {
-    name: "x",
+    name: "github",
     imgPath: "/images/github.png",
+    link: "https://github.com/LennyDickey",
   },
   {
     name: "linkedin",
     imgPath: "/images/linkedin.png",
+    link: "https://www.linkedin.com/in/lendickey",
   },
 ];
 

@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:ital,wght@0,300..700;1,300..700&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -12,7 +13,7 @@ body {
   background-color: black;
   color: white;
   scroll-behavior: smooth;
-  font-family: "Mona Sans", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 section {
@@ -20,7 +21,7 @@ section {
 }
 
 @theme {
-  --font-sans: "Mona Sans", sans-serif;
+  --font-sans: "Inter", sans-serif;
   --color-white-50: #d9ecff;
   --color-black-50: #1c1c21;
   --color-black-100: #0e0e10;
@@ -167,10 +168,10 @@ section {
     }
   }
 
-  /* === About section =============================== */
   .about-section {
     @apply w-full bg-black text-white 
            px-4 md:px-9 lg:px-19   /* responsive x-padding  */
+           pt-20 pb-10
            py-10; /* y-padding             */
   }
 
@@ -180,7 +181,7 @@ section {
   }
 
   .about-text {
-    @apply text-lg leading-relaxed 
+    @apply text-lg leading-relaxed text-center
            text-[#ffadd6]/90; /* soft pink, 90 % alpha */
   }
 
@@ -349,6 +350,10 @@ section {
         @apply inline-block;
       }
     }
+  }
+
+  .title-font {
+    font-family: "Space Grotesk", sans-serif;
   }
 }
 

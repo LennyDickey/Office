@@ -8,7 +8,7 @@ const AppShowcase = () => {
   return (
     <section id="about" className="about-section">
       <div className="about-title space-y-6">
-        <TitleHeader title="About" sub="‧˚₊•┈┈┈┈୨୧ <INTRO/> ୨୧┈┈┈┈•‧₊˚⊹" />
+        <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <INTRO/> ୨୧┈┈┈┈•‧₊˚⊹" />
         <div>
           <p className="about-text " style={{ color: "#ffadd6" }}>
             I’m Lenny Dickey, a software engineer and creative technologist. I
