@@ -5,9 +5,11 @@ import Experience from "./sections/Experience";
 import Hero from "./sections/Hero";
 import ShowcaseSection from "./sections/ShowcaseSection";
 import Navbar from "./components/NavBar";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 const App = () => (
   <>
+    <LoadingOverlay />
     <Navbar />
     <Hero />
     <ShowcaseSection />

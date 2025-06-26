@@ -29,9 +29,9 @@ const TechStack = () => {
 
   return (
     <div id="skills" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5">
+      <div className="w-full h-full md:px-10 px-5 text-center">
         <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <PERSONAL/> ୨୧┈┈┈┈•‧₊˚⊹" />
-        <div className="tech-grid">
+        <div className="tech-grid justify-items-center">
           {techStackIcons.map((icon) => (
             <a
               key={icon.name}

@@ -99,7 +99,7 @@ const techStackImgs = [
 
 const techStackIcons = [
   {
-    name: "React Developer",
+    name: "Kawaii Treats",
     modelPath: "/models/kawaii.glb",
     description:
       "A dessert showcase website built with vanilla JavaScript, HTML, and CSS. Features an interactive gallery with animations and responsive design.",
@@ -108,7 +108,7 @@ const techStackIcons = [
     rotation: [0, 0, 0],
   },
   {
-    name: "Python Developer",
+    name: "Student Fund",
     modelPath: "/models/fund.glb",
     description:
       "App for economic mobility for students, were students can submit data about their career intentions that leads to non-profits resources.",
@@ -117,7 +117,7 @@ const techStackIcons = [
     rotation: [0, 0, 0],
   },
   {
-    name: "Backend Developer",
+    name: "C# Server",
     modelPath: "/models/csharp.glb",
     description:
       "a .NET C# REST API backend that fetches data from a MySQL DB that allows you create new entries, read, delete.",
