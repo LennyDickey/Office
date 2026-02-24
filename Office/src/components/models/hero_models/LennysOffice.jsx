@@ -8,7 +8,7 @@ import { useGLTF } from "@react-three/drei";
 import { convertMaterialsToBasic } from "../convertToBasic";
 
 export default function Room(props) {
-  const { nodes, materials } = useGLTF("models/LennysOffice.glb");
+  const { nodes, materials } = useGLTF("/models/LennysOffice.glb");
   useMemo(() => convertMaterialsToBasic(materials), [materials]);
   return (
     <group {...props} dispose={null}>
@@ -44,4 +44,4 @@ export default function Room(props) {
   );
 }
 
-useGLTF.preload("models/LennysOffice.glb");
+useGLTF.preload("/models/LennysOffice.glb");

@@ -1,13 +1,41 @@
 import {
   Environment,
   Float,
-  OrbitControls,
   Center,
   useGLTF,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import * as THREE from "three";
+
+// Drives Float animation in frameloop="demand" mode by calling invalidate()
+// only while the canvas element is visible in the viewport.
+const FloatDriver = () => {
+  const { invalidate, gl } = useThree();
+  useEffect(() => {
+    let rafId;
+    let running = false;
+    const step = () => {
+      invalidate();
+      if (running) rafId = requestAnimationFrame(step);
+    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        running = entry.isIntersecting;
+        if (running) rafId = requestAnimationFrame(step);
+        else cancelAnimationFrame(rafId);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(gl.domElement);
+    return () => {
+      running = false;
+      cancelAnimationFrame(rafId);
+      observer.disconnect();
+    };
+  }, [invalidate, gl]);
+  return null;
+};
 
 const TechIconCardExperience = ({ model }) => {
   const scene = useGLTF(model.modelPath);
@@ -25,7 +53,8 @@ const TechIconCardExperience = ({ model }) => {
   }, [scene]);
 
   return (
-    <Canvas>
+    <Canvas dpr={[1, 2]} performance={{ min: 0.5, debounce: 200 }} frameloop="demand">
+      <FloatDriver />
       <ambientLight intensity={0.3} />
       <directionalLight position={[5, 5, 5]} intensity={1} />
       <spotLight
@@ -60,8 +89,6 @@ const TechIconCardExperience = ({ model }) => {
           </group>
         </Center>
       </Float>
-
-      <OrbitControls enableZoom={false} />
     </Canvas>
   );
 };

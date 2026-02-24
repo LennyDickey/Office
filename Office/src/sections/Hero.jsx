@@ -1,4 +1,3 @@
-import Button from "../components/Button";
 import HeroExperience from "../components/models/hero_models/HeroExperience";
 
 const Hero = () => {

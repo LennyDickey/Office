@@ -1,0 +1,10 @@
+@reference "../../index.css";
+
+.loading-overlay {
+  @apply fixed inset-0 z-9999 bg-black/80 flex justify-center items-center;
+}
+
+.loading-bar {
+  @apply h-full bg-linear-to-r from-[#ffadd6] to-[#9486c1] rounded-full transition-all duration-300;
+  width: var(--progress, 0%);
+}

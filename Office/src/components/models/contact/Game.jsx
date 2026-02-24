@@ -7,7 +7,7 @@ import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Computer(props) {
-  const { nodes, materials } = useGLTF('models/game.glb')
+  const { nodes, materials } = useGLTF('/models/game.glb')
   return (
     <group {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]} scale={1.373}>
@@ -23,6 +23,6 @@ export function Computer(props) {
   )
 }
 
-useGLTF.preload('models/game.glb')
+useGLTF.preload('/models/game.glb')
 
 export default Computer;

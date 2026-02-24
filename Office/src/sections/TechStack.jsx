@@ -1,44 +1,27 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import { motion } from "motion/react";
 
 import TitleHeader from "../components/TitleHeader";
 import TechIconCardExperience from "../components/models/tech_logos/TechIconCardExperience";
 import { techStackIcons } from "../constants";
+import "../styles/components/tech-stack.css";
 
 const TechStack = () => {
-  useGSAP(() => {
-    gsap.fromTo(
-      ".tech-card",
-      {
-        y: 50,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.inOut",
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: "#skills",
-          start: "top center",
-        },
-      }
-    );
-  });
-
   return (
     <div id="skills" className="flex-center section-padding">
       <div className="w-full h-full md:px-10 px-5 text-center">
         <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <PERSONAL/> ୨୧┈┈┈┈•‧₊˚⊹" />
         <div className="tech-grid justify-items-center">
-          {techStackIcons.map((icon) => (
-            <a
+          {techStackIcons.map((icon, index) => (
+            <motion.a
               key={icon.name}
               href={icon.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="card-border tech-card overflow-hidden group xl:rounded-3xl rounded-xl hover:scale-[1.02] transition-transform duration-300"
+              className="card-border tech-card group"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeInOut", delay: index * 0.2 }}
+              viewport={{ once: true }}
             >
               <div className="tech-card-animated-bg" />
               <div className="tech-card-content space-y-4">
@@ -52,7 +35,7 @@ const TechStack = () => {
                   <p className="text-blue-50 text-sm">{icon.description}</p>
                 </div>
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>

@@ -11,7 +11,11 @@ const HeroExperience = () => {
   const isTablet = useMediaQuery({ query: "(max-width: 1024px)" });
 
   return (
-    <Canvas camera={{ position: [5, 5, 5], fov: 45 }}>
+    <Canvas
+      camera={{ position: [5, 5, 5], fov: 45 }}
+      dpr={[1, 2]}
+      performance={{ min: 0.5 }}
+    >
       <ambientLight intensity={0.5} color="#ffffff" />
       {/* Configure OrbitControls to disable panning and control zoom based on device type */}
       <OrbitControls
@@ -28,7 +32,6 @@ const HeroExperience = () => {
       <Suspense fallback={null}>
         <group
           scale={isMobile ? 0.7 : 1}
-          //          position={[0, -3.5, 0]}
           rotation={[0, -Math.PI / 4, 0]}
         >
           <Center>
