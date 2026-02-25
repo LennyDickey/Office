@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { motion } from "motion/react";
 
 import TitleHeader from "../components/TitleHeader";
@@ -26,7 +27,9 @@ const TechStack = () => {
               <div className="tech-card-animated-bg" />
               <div className="tech-card-content space-y-4">
                 <div className="tech-icon-wrapper overflow-visible">
-                  <TechIconCardExperience model={icon} />
+                  <Suspense fallback={null}>
+                    <TechIconCardExperience model={icon} index={index + 1} />
+                  </Suspense>
                 </div>
                 <div className="padding-x w-full text-center space-y-1">
                   <p className="text-white-50 text-lg font-semibold">
