@@ -68,8 +68,10 @@ the raw export in `raw_assets/LennysOffice.glb` with
 [gltfpack](https://github.com/zeux/meshoptimizer) (`npm i -g gltfpack`):
 
 ```bash
-gltfpack -i raw_assets/LennysOffice.glb -o public/models/LennysOffice.min.glb -tc
+gltfpack -i raw_assets/LennysOffice.glb -o public/models/LennysOffice.min.glb -cc -tc -tu -tl 2048
 ```
 
-`-tc` transcodes textures to KTX2/BasisU, which is decoded at runtime by the
+`-cc` applies meshopt geometry compression, `-tc -tu` transcodes textures to
+KTX2 in UASTC mode (sharper than the default ETC1S), and `-tl 2048` caps
+texture size at 2K. The KTX2 textures are decoded at runtime by the
 transcoder in `public/basis/`.

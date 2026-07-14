@@ -1,4 +1,4 @@
-import { GLTFLoader, KTX2Loader } from "three-stdlib";
+import { GLTFLoader, KTX2Loader, MeshoptDecoder } from "three-stdlib";
 
 export const HERO_MODEL_URL = "/models/LennysOffice.min.glb";
 
@@ -12,6 +12,16 @@ export class HeroGLTFLoader extends GLTFLoader {}
 // so cache one KTX2Loader per renderer.
 const ktx2LoaderByRenderer = new WeakMap();
 
+// three-stdlib exports MeshoptDecoder as a factory function; instantiate once.
+let meshoptDecoder;
+function getMeshoptDecoder() {
+  if (!meshoptDecoder) {
+    meshoptDecoder =
+      typeof MeshoptDecoder === "function" ? MeshoptDecoder() : MeshoptDecoder;
+  }
+  return meshoptDecoder;
+}
+
 export function getHeroLoaderExtensions(gl) {
   let ktx2Loader = ktx2LoaderByRenderer.get(gl);
   if (!ktx2Loader) {
@@ -23,5 +33,6 @@ export function getHeroLoaderExtensions(gl) {
 
   return (loader) => {
     loader.setKTX2Loader(ktx2Loader);
+    loader.setMeshoptDecoder(getMeshoptDecoder());
   };
 }
