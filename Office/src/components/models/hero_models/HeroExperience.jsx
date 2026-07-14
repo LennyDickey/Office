@@ -5,7 +5,10 @@ import { useMediaQuery } from "react-responsive";
 
 import HeroCanvasErrorBoundary from "./HeroCanvasErrorBoundary";
 import Room from "./LennysOffice";
-import { HeroGLTFLoader, HERO_MODEL_URL } from "./heroGltfLoader";
+import {
+  CompressedGLTFLoader,
+  HERO_MODEL_URL,
+} from "../compressedGltfLoader";
 
 const MAX_RETRIES = 1;
 
@@ -19,7 +22,7 @@ const HeroExperience = () => {
     setAttempt((currentAttempt) => {
       if (currentAttempt >= MAX_RETRIES) return currentAttempt;
 
-      useLoader.clear(HeroGLTFLoader, HERO_MODEL_URL);
+      useLoader.clear(CompressedGLTFLoader, HERO_MODEL_URL);
       setRetryToken((token) => token + 1);
       return currentAttempt + 1;
     });

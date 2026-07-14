@@ -11,11 +11,10 @@
 /* pointer-events:none prevents this off-screen hover layer from intercepting
    clicks before the hover animation plays. */
 .tech-card-animated-bg {
-  @apply absolute left-0 -bottom-full w-full h-full group-hover:bottom-0 transition-all duration-700;
-  background: rgba(194, 126, 160, 0.45);
+  @apply absolute left-0 -bottom-full w-full h-full group-hover:bottom-0 transition-all duration-700 bg-mauve-100/45;
   pointer-events: none;
 }
 
 .tech-card-content {
-  @apply flex flex-col md:justify-center items-center xl:gap-5 xl:h-[50vh] overflow-visible relative z-10 group-hover:cursor-grab;
+  @apply flex flex-col md:justify-center items-center xl:gap-5 xl:min-h-[50vh] overflow-visible relative z-10 group-hover:cursor-grab;
 }

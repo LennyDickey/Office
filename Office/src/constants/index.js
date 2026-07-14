@@ -45,8 +45,6 @@ const techStackIcons = [
 
 const expCards = [
   {
-    review: "b.",
-    imgPath: "/images/exp1.png",
     logoPath: "/images/logo1.png",
     title: "Software Engineer",
     name: "Bank of America",
@@ -58,8 +56,6 @@ const expCards = [
     ],
   },
   {
-    review: "b.",
-    imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
     title: "Computational Media Artist",
     name: "Just Lenny LLC",
@@ -71,8 +67,6 @@ const expCards = [
     ],
   },
   {
-    review: "b.",
-    imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
     title: "Front-End Developer",
     name: "Red Ventures",

@@ -3,17 +3,17 @@ import { useLoader, useThree } from "@react-three/fiber";
 
 import { convertSceneToBasic } from "../convertToBasic";
 import {
-  getHeroLoaderExtensions,
-  HeroGLTFLoader,
+  getCompressedLoaderExtensions,
+  CompressedGLTFLoader,
   HERO_MODEL_URL,
-} from "./heroGltfLoader";
+} from "../compressedGltfLoader";
 
 export default function Room(props) {
   const { gl } = useThree();
   const { scene } = useLoader(
-    HeroGLTFLoader,
+    CompressedGLTFLoader,
     HERO_MODEL_URL,
-    getHeroLoaderExtensions(gl)
+    getCompressedLoaderExtensions(gl)
   );
 
   // Textures are baked; show them unlit at full brightness like the

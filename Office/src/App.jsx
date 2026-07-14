@@ -2,7 +2,7 @@ import { Suspense, lazy, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
 
-import Navbar from "./components/NavBar";
+import NavBar from "./components/NavBar";
 import LoadingOverlay from "./components/LoadingOverlay";
 import WarmPreloader from "./components/WarmPreloader";
 import Hero from "./sections/Hero";
@@ -24,7 +24,7 @@ const App = () => {
       {/* Fixed UI — lifted out of the z:1 stacking context so their own
           z-indices (z-100, z-9999) evaluate at the root level, above canvas. */}
       <LoadingOverlay />
-      <Navbar />
+      <NavBar />
 
       {/* Scrollable page content */}
       <div style={{ position: "relative", zIndex: 1 }}>

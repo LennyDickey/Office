@@ -10,7 +10,10 @@ const TechStack = () => {
   return (
     <div id="skills" className="flex-center section-padding">
       <div className="w-full h-full md:px-10 px-5 text-center">
-        <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <PERSONAL/> ୨୧┈┈┈┈•‧₊˚⊹" />
+        <TitleHeader
+          title="‧˚₊•┈┈┈┈୨୧ <PERSONAL/> ୨୧┈┈┈┈•‧₊˚⊹"
+          label="Personal Projects"
+        />
         <div className="tech-grid justify-items-center">
           {techStackIcons.map((icon, index) => (
             <motion.a
@@ -35,7 +38,7 @@ const TechStack = () => {
                   <p className="text-white-50 text-lg font-semibold">
                     {icon.name}
                   </p>
-                  <p className="text-blue-50 text-sm">{icon.description}</p>
+                  <p className="text-white-50/80 text-sm">{icon.description}</p>
                 </div>
               </div>
             </motion.a>
