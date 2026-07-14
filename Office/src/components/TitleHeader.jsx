@@ -1,9 +1,10 @@
-const TitleHeader = ({ title }) => {
+const TitleHeader = ({ title, label }) => {
   return (
     <div>
-      <h1 className="font-medium md:text-5xl text-3xl text-center title-font">
-        {title}
-      </h1>
+      <h2 className="font-medium md:text-5xl text-3xl text-center title-font">
+        <span className="sr-only">{label}</span>
+        <span aria-hidden="true">{title}</span>
+      </h2>
     </div>
   );
 };

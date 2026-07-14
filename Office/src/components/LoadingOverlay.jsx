@@ -2,6 +2,9 @@ import { useRef, useEffect, useState } from "react";
 import { useProgress } from "@react-three/drei";
 import "../styles/components/loading-overlay.css";
 
+// Failsafe: never strand users on the overlay if an asset stalls
+const MAX_OVERLAY_MS = 30000;
+
 const LoadingOverlay = () => {
   const { progress, active } = useProgress();
   const seenActive = useRef(false);
@@ -15,6 +18,11 @@ const LoadingOverlay = () => {
       setDismissed(true);
     }
   }, [active, dismissed]);
+
+  useEffect(() => {
+    const failsafe = setTimeout(() => setDismissed(true), MAX_OVERLAY_MS);
+    return () => clearTimeout(failsafe);
+  }, []);
 
   if (dismissed || !active) return null;
 

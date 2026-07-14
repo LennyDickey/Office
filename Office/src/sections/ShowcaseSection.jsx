@@ -5,11 +5,10 @@ const AppShowcase = () => {
   return (
     <section id="about" className="section-padding">
       <div className="about-title space-y-6">
-        <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <INTRO/> ୨୧┈┈┈┈•‧₊˚⊹" />
+        <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <INTRO/> ୨୧┈┈┈┈•‧₊˚⊹" label="About" />
         <div>
           <motion.p
             className="about-text pt-15"
-            style={{ color: "#ffadd6" }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}

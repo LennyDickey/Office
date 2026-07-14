@@ -7,6 +7,7 @@ import ContactExperience from "../components/models/contact/ContactExperience";
 const Contact = () => {
   const formRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null); // null | "success" | "error"
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -21,6 +22,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); // Show loading state
+    setStatus(null);
 
     try {
       await emailjs.sendForm(
@@ -32,8 +34,10 @@ const Contact = () => {
 
       // Reset form and stop loading
       setForm({ name: "", email: "", message: "" });
+      setStatus("success");
     } catch (error) {
-      console.error("EmailJS Error:", error); // Optional: show toast
+      console.error("EmailJS Error:", error);
+      setStatus("error");
     } finally {
       setLoading(false); // Always stop loading, even on error
     }
@@ -42,7 +46,7 @@ const Contact = () => {
   return (
     <section id="contact" className="flex-center section-padding">
       <div className="w-full h-full md:px-10 px-5">
-        <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <ASL/> ୨୧┈┈┈┈•‧₊˚⊹" />
+        <TitleHeader title="‧˚₊•┈┈┈┈୨୧ <ASL/> ୨୧┈┈┈┈•‧₊˚⊹" label="Contact" />
         <div className="grid-12-cols mt-16">
           <div className="xl:col-span-5">
             <div className="flex-center card-border rounded-xl p-10">
@@ -97,15 +101,29 @@ const Contact = () => {
                       {loading ? "Sending..." : "Send Message"}
                     </p>
                     <div className="arrow-wrapper">
-                      <img src="/images/arrow-down.svg" alt="arrow" />
+                      <img src="/images/arrow-down.svg" alt="" />
                     </div>
                   </div>
                 </button>
+
+                <p aria-live="polite" className="min-h-6 text-center">
+                  {status === "success" && (
+                    <span className="text-pink-100">
+                      Message sent — thank you! I&apos;ll get back to you soon.
+                    </span>
+                  )}
+                  {status === "error" && (
+                    <span className="text-white-50">
+                      Something went wrong sending your message. Please try
+                      again, or email me directly.
+                    </span>
+                  )}
+                </p>
               </form>
             </div>
           </div>
           <div className="xl:col-span-7 min-h-96">
-            <div className="bg-[#FFADD6] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
+            <div className="bg-pink-100 w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
               <ContactExperience />
             </div>
           </div>

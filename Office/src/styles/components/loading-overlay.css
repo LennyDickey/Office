@@ -5,6 +5,6 @@
 }
 
 .loading-bar {
-  @apply h-full bg-linear-to-r from-[#ffadd6] to-[#9486c1] rounded-full transition-all duration-300;
+  @apply h-full bg-linear-to-r from-pink-100 to-blue-50 rounded-full transition-all duration-300;
   width: var(--progress, 0%);
 }

@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "react";
 import { useProgress, useGLTF } from "@react-three/drei";
 
+import { GAME_MODEL_URL } from "./models/compressedGltfLoader";
+
 const WarmPreloader = () => {
   const { active } = useProgress();
   const seenActive = useRef(false);
@@ -24,7 +26,12 @@ const WarmPreloader = () => {
         // Stage B: Contact + game model (queued after A)
         const runB = () => {
           import("../sections/Contact");
-          useGLTF.preload("/models/game.glb");
+          // The game model loads through the dedicated CompressedGLTFLoader,
+          // which needs a live WebGL context — so just warm the HTTP cache
+          // here; the real load in Game.jsx is then served from cache.
+          fetch(GAME_MODEL_URL)
+            .then((res) => res.arrayBuffer())
+            .catch(() => {});
 
           // Stage C: Footer (lowest priority)
           const runC = () => {
