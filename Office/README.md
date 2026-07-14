@@ -60,3 +60,16 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173/) in your browser to view the project.
 # Port
+
+## 3D Model Compression
+
+The hero model served at `public/models/LennysOffice.min.glb` is generated from
+the raw export in `raw_assets/LennysOffice.glb` with
+[gltfpack](https://github.com/zeux/meshoptimizer) (`npm i -g gltfpack`):
+
+```bash
+gltfpack -i raw_assets/LennysOffice.glb -o public/models/LennysOffice.min.glb -tc
+```
+
+`-tc` transcodes textures to KTX2/BasisU, which is decoded at runtime by the
+transcoder in `public/basis/`.

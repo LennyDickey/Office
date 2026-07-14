@@ -1,11 +1,11 @@
-import { OrbitControls, Center, useGLTF } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Center } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
 import { Suspense, useCallback, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import HeroCanvasErrorBoundary from "./HeroCanvasErrorBoundary";
 import Room from "./LennysOffice";
-import { HERO_MODEL_URL } from "./heroGltfLoader";
+import { HeroGLTFLoader, HERO_MODEL_URL } from "./heroGltfLoader";
 
 const MAX_RETRIES = 1;
 
@@ -19,7 +19,7 @@ const HeroExperience = () => {
     setAttempt((currentAttempt) => {
       if (currentAttempt >= MAX_RETRIES) return currentAttempt;
 
-      useGLTF.clear(HERO_MODEL_URL);
+      useLoader.clear(HeroGLTFLoader, HERO_MODEL_URL);
       setRetryToken((token) => token + 1);
       return currentAttempt + 1;
     });
@@ -28,28 +28,12 @@ const HeroExperience = () => {
   return (
     <Canvas
       camera={{ position: [5, 5, 5], fov: 45 }}
-      dpr={[1, 2]}
+      dpr={isMobile ? [1, 1.5] : [1, 2]}
       performance={{ min: 0.5 }}
-      
     >
-
-      <hemisphereLight args={["#FFE8D4", "#BB9B8B", 1.05]} />
-      <ambientLight intensity={0.62} color="#ffe0c7" />
-      <directionalLight
-        position={[4, 4, 4]}
-        intensity={2.25}
-        color="#ffd7be"
-      />
-      <directionalLight
-        position={[-2, 2, 3]}
-        intensity={0.98}
-        color="#c7d7ff"
-      />
-      <pointLight
-        position={[0.8, 1.9, 1.0]}
-        intensity={0.62}
-        color="#ffd1bd"
-      />
+      {/* The room's materials are unlit (baked textures), so a single
+          ambient light is all the scene needs. */}
+      <ambientLight intensity={0.5} color="#ffffff" />
 
       {/* Configure OrbitControls to disable panning and control zoom based on device type */}
       <OrbitControls

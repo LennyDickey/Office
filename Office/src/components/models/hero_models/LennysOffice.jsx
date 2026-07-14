@@ -1,16 +1,24 @@
-import { useGLTF } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
+import { useMemo } from "react";
+import { useLoader, useThree } from "@react-three/fiber";
 
-import { getHeroExtendLoader, HERO_MODEL_URL } from "./heroGltfLoader";
+import { convertSceneToBasic } from "../convertToBasic";
+import {
+  getHeroLoaderExtensions,
+  HeroGLTFLoader,
+  HERO_MODEL_URL,
+} from "./heroGltfLoader";
 
 export default function Room(props) {
   const { gl } = useThree();
-  const { scene } = useGLTF(
+  const { scene } = useLoader(
+    HeroGLTFLoader,
     HERO_MODEL_URL,
-    false,
-    true,
-    getHeroExtendLoader(gl)
+    getHeroLoaderExtensions(gl)
   );
+
+  // Textures are baked; show them unlit at full brightness like the
+  // original uncompressed model did.
+  useMemo(() => convertSceneToBasic(scene), [scene]);
 
   return (
     <group {...props} dispose={null}>

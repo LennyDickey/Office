@@ -1,29 +1,27 @@
-import { KTX2Loader, MeshoptDecoder } from "three-stdlib";
+import { GLTFLoader, KTX2Loader } from "three-stdlib";
 
-export const HERO_MODEL_URL = "/models/rawdog_compressed.glb";
+export const HERO_MODEL_URL = "/models/LennysOffice.min.glb";
 
-const loaderConfigByRenderer = new WeakMap();
+// Dedicated loader class: useLoader caches one loader instance per class,
+// so subclassing gives the hero its own GLTFLoader and keeps the KTX2
+// setup off the shared loader used by every other useGLTF in the app
+// (tech cards, contact model).
+export class HeroGLTFLoader extends GLTFLoader {}
 
-function createLoaderConfig(gl) {
-  const ktx2Loader = new KTX2Loader();
-  ktx2Loader.setTranscoderPath(`${import.meta.env.BASE_URL}basis/`);
-  ktx2Loader.detectSupport(gl);
+// KTX2 transcoder support is detected against a specific WebGL renderer,
+// so cache one KTX2Loader per renderer.
+const ktx2LoaderByRenderer = new WeakMap();
 
-  return {
-    extendLoader: (loader) => {
-      loader.setKTX2Loader(ktx2Loader);
-      loader.setMeshoptDecoder(MeshoptDecoder);
-    },
-  };
-}
-
-export function getHeroExtendLoader(gl) {
-  let config = loaderConfigByRenderer.get(gl);
-  if (!config) {
-    config = createLoaderConfig(gl);
-    loaderConfigByRenderer.set(gl, config);
+export function getHeroLoaderExtensions(gl) {
+  let ktx2Loader = ktx2LoaderByRenderer.get(gl);
+  if (!ktx2Loader) {
+    ktx2Loader = new KTX2Loader();
+    ktx2Loader.setTranscoderPath(`${import.meta.env.BASE_URL}basis/`);
+    ktx2Loader.detectSupport(gl);
+    ktx2LoaderByRenderer.set(gl, ktx2Loader);
   }
 
-  return config.extendLoader;
+  return (loader) => {
+    loader.setKTX2Loader(ktx2Loader);
+  };
 }
-
