@@ -19,7 +19,7 @@ const techStackIcons = [
     modelPath: "/models/kawaii.glb",
     description:
       "A dessert showcase website built with vanilla JavaScript, HTML, and CSS. Features an interactive gallery with animations and responsive design.",
-    github: "https://github.com/LennyDickey/kawaii-treats",
+    github: "https://kawaiitreats.netlify.app/",
     scale: 4,
     rotation: [0, 0, 0],
   },
